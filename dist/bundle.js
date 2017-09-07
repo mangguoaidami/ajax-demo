@@ -9020,41 +9020,108 @@ module.exports = function (regExp, replace) {
 "use strict";
 
 
-// import ajax from 'ajax';
-var ajax = __webpack_require__(328);
-
-var request = ajax({
-    method: 'get',
-    url: 'https://reqres.in' + '/api/users/2',
-    data: null
-});
-
-var btn = document.getElementById('btn');
-
 window.onload = function () {
-    btn.addEventListener('click', function (e) {
-        var data = request.then;
-        console.log(data);
-    }, false);
+  /**
+   * Set()实例
+   */
+  // const s = new Set();
+  // [1, 2, 3, 2, 1, 3].forEach(data => s.add(data));
+  // for(let i of s){
+  //     console.log(i);
+  // }
+
+  /**
+   * Promise实例
+   */
+  // function timeout(ms){
+  //     return new Promise((resolve, reject)=>{
+  //         let text = 'done'
+  //         setTimeout(function(){ resolve(text) }, ms);
+  //     })
+  // }
+  // timeout(100).then(data => {
+  //     console.log(data);
+  // })
+
+  /**
+   * promise 回调函数then()会在当前所有同步函数执行完才会执行
+   */
+  //  let promise = new Promise((resolve, reject) => {
+  //      console.log('iam in promise.');
+  //      resolve()       //单个执行完成
+  //  });
+  //  promise.then(function(){
+  //      console.log('iam in back fun.')     //所有执行完成
+  //  });
+  //  console.log('同步.');         //同步执行函数
+
+  /**
+   * 参数的解构赋值
+   */
+  // let array = ["aaa", "32324", "dsad"];
+
+  // (function(array){
+  //     for(let i=0; i<array.length; i++){
+  //         console.log(array[i])
+  //     }
+  // })(array);
+
+  /**
+   * 参数是否赋值
+   */
+  function log(x, y) {
+    y = y || 'word.';
+    console.log(x, y);
+  }
+  log('hello');
+  log('hello', 'world');
+  log('hello');
 };
 
-/***/ }),
-/* 328 */
-/***/ (function(module, exports, __webpack_require__) {
+/**
+ * 多图片预加载
+ */
+// var imgs = "https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg";
+// var allImgs = [];
+// function addImg(){
+//     for(var i=0; i<500; i++){
+//         allImgs.push(imgs);
+//     };
+// }
+// var span = 20000;
+// addImg();
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
- * ajax - v2.3.0
- * Ajax module in Vanilla JS
- * https://github.com/fdaciuk/ajax
+// function preload(preloadQuene,msec){  
+//      //最大预加载时间
+//      let timeout = new Promise(function(resolve, reject){
+//          window.setTimeout(resolve,msec,"超时");
+//      });
 
- * Sun Jul 23 2017 10:55:09 GMT-0300 (BRT)
- * MIT (c) Fernando Daciuk
-*/
-!function(e,t){"use strict"; true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (t),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):"object"==typeof exports?exports=module.exports=t():e.ajax=t()}(this,function(){"use strict";function e(e){var r=["get","post","put","delete"];return e=e||{},e.baseUrl=e.baseUrl||"",e.method&&e.url?n(e.method,e.baseUrl+e.url,t(e.data),e):r.reduce(function(r,o){return r[o]=function(r,u){return n(o,e.baseUrl+r,t(u),e)},r},{})}function t(e){return e||null}function n(e,t,n,u){var c=["then","catch","always"],i=c.reduce(function(e,t){return e[t]=function(n){return e[t]=n,e},e},{}),f=new XMLHttpRequest,d=r(t,n,e);return f.open(e,d,!0),f.withCredentials=u.hasOwnProperty("withCredentials"),o(f,u.headers),f.addEventListener("readystatechange",a(i,f),!1),f.send(s(n)),i.abort=function(){return f.abort()},i}function r(e,t,n){if("get"!==n.toLowerCase()||!t)return e;var r=s(t),o=e.indexOf("?")>-1?"&":"?";return e+o+r}function o(e,t){t=t||{},u(t)||(t["Content-Type"]="application/x-www-form-urlencoded"),Object.keys(t).forEach(function(n){t[n]&&e.setRequestHeader(n,t[n])})}function u(e){return Object.keys(e).some(function(e){return"content-type"===e.toLowerCase()})}function a(e,t){return function n(){t.readyState===t.DONE&&(t.removeEventListener("readystatechange",n,!1),e.always.apply(e,c(t)),t.status>=200&&t.status<300?e.then.apply(e,c(t)):e["catch"].apply(e,c(t)))}}function c(e){var t;try{t=JSON.parse(e.responseText)}catch(n){t=e.responseText}return[t,e]}function s(e){return i(e)?f(e):e}function i(e){return"[object Object]"===Object.prototype.toString.call(e)}function f(e){return Object.keys(e).reduce(function(t,n){var r=t?t+"&":"";return r+d(n)+"="+d(e[n])},"")}function d(e){return encodeURIComponent(e)}return e});
+//      let promiseQuene = [];
+//      for(let i = 0;i<preloadQuene.length;i++){
+//          let load = new Promise(function(resolve,reject){
+//              var img = new Image();
+//              img.src = preloadQuene[i];
+//              img.onload = function(){
+//                  console.log("图片载入成功："+this.src);
+//                  img.onload = null;
+//                  resolve(this);
+//              }
+//              img.onerror = function(){
+//                  console.warn("图片载入失败："+this.src);
+//                  resolve("图片载入失败");
+//              }
+//          });
+//          promiseQuene.push(load);
+//      }
+//      return Promise.race([timeout,Promise.all(promiseQuene)]);
+//  }
+//  preload(allImgs,span).then(function(data){  
+//      console.log(data);
+//      for(var i=0; i<data.length; i++){
+//         document.body.appendChild(data[i]);
+//      }
+//  });
 
 /***/ })
 /******/ ]);

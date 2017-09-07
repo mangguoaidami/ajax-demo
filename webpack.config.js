@@ -2,7 +2,7 @@ var path=require("path");
 module.exports = {
     entry: [
         "babel-polyfill",
-        "./src/ajax.js"
+        "./src/es2015.js"
     ],
     output: {
         path: __dirname + '/dist/',
